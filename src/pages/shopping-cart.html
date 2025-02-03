@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- line for responsive in mobile phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css custom styles -->
+    <link rel="stylesheet" href="../style.css" />
+    <!-- Font Awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- main js script -->
+    <script defer src="../scripts/cart.js"></script>
+    <title>Shopping Cart</title>
+  </head>
+  <body>
+    <header class="py-5 bg-gray-800">
+      <div class="container flex items-center justify-between">
+        <!-- header logo -->
+        <a href="./home.html" class="text-2xl font-bold text-gray-200">
+          logo
+        </a>
+        <!-- header right side -->
+        <div class="flex items-center gap-x-5">
+          <a class="relative cart" href="shopping-cart.html">
+            <!-- cart -->
+            <i class="fa-solid fa-cart-shopping fa-lg fa-fw">
+              <div
+                class="absolute -top-1 -right-0.5 w-4 h-4 text-xs bg-red-600 rounded-full justify-center items-center hidden"
+                id="cart-count"
+              >
+                5
+              </div>
+            </i>
+          </a>
+          <a class="flex items-center" href="#">
+            <!-- user info -->
+            <i class="fa-solid fa-user"></i>
+            <p class="hidden ml-2 gap-x-1 min-w-fit md:block">
+              Hello, <span id="user"></span>
+            </p>
+          </a>
+          <!-- logout button -->
+          <button
+            type="submit"
+            class="block px-3 py-1 text-lg font-semibold rounded cursor-pointer bg-sky-600 hover:bg-sky-700"
+            id="logout"
+          >
+            logout
+          </button>
+        </div>
+        <!-- end of right side container -->
+      </div>
+      <!-- end of main header container -->
+    </header>
+    <main>
+      <!-- main wrapper -->
+      <div class="container flex flex-col flex-wrap gap-6 mt-10 sm:flex-row">
+        <!-- cart section -->
+        <section
+          class="p-5 border border-stone-600 grow-2 rounded-2xl"
+          id="card-container"
+        >
+          <!-- product cards goes here -->
+        </section>
+        <!-- checkout section -->
+        <aside
+          class="self-start p-5 border border-stone-600 grow-1 rounded-2xl"
+        >
+          <h2 class="mb-10 text-3xl">Summary</h2>
+          <p class="text-2xl">Total Price: <span id="total">0</span>$</p>
+          <a
+            href="#"
+            id="delete"
+            class="block py-2 mt-10 font-light text-center transition-colors rounded-full w-fit mx-auto bg-[#0D0E0E] hover:bg-[#060707] text-2xl px-10"
+            >Checkout</a
+          >
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

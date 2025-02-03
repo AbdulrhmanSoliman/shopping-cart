@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <title>Logout</title>
+  </head>
+  <body>
+    <main>
+      <div
+        class="container flex flex-col items-center justify-center min-h-lvh"
+      >
+        <div class="bg-[#181818] py-6 px-4 rounded-lg min-w-sm">
+          <h1 class="mb-5 text-2xl font-semibold text-center">
+            Sure to logout?
+          </h1>
+          <div class="flex gap-2">
+            <button
+              type="submit"
+              class="block w-full py-1 mt-5 text-lg font-semibold rounded cursor-pointer bg-[#333] hover:bg-secondary"
+              id="stay"
+            >
+              Go back
+            </button>
+            <button
+              type="submit"
+              class="block w-full py-1 mt-5 text-lg font-semibold rounded cursor-pointer bg-sky-600 hover:bg-sky-700"
+              id="logout"
+            >
+              logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/src/scripts/logout.js"></script>
+  </body>
+</html>
