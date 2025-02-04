@@ -19,7 +19,7 @@ if (localStorage.getItem("loginUsers")) {
 }
 logoutBtn.addEventListener(
   "click",
-  () => (window.location.href = "/src/pages/logout.html") // handling logout in logout page
+  () => (window.location.href = "/logout.html") // handling logout in logout page
 );
 // ================ Getting data from local storage ================
 if (localStorage.getItem("loginUsers")) {
@@ -27,19 +27,19 @@ if (localStorage.getItem("loginUsers")) {
   const currectLoginUser =
     loginUsers.find((user) => user.login == true) ?? false; // using find() to get the currect login user
   if (currectLoginUser?.totalCount) {
-    previousCount = currectLoginUser.totalCount;
-    cartCount.textContent = previousCount; // update UI
+    cartCount.textContent = currectLoginUser.totalCount; // update UI
     cartCount.classList.replace("hidden", "flex"); // replacing hidden to flex
     // so if there is count, Absloutly there is an orders so i nested it into the count condition
-    previousOrders = currectLoginUser.orders; // assign global array `previousOrders`  to the user order in the localstorage
+    orders = currectLoginUser.orders; // assign orders value to previous orders in localstorage
   }
   let content;
   if (currectLoginUser?.orders) {
+    // if orders found load the content
     orders = currectLoginUser.orders;
-    console.log(orders);
     orders.forEach((order) => {
-      content = `
-      <div class="flex card bg-[#333] p-3 rounded mb-3 relative">
+      let card = document.createElement("div");
+      card.className = "flex card bg-[#333] p-3 rounded mb-3 relative";
+      card.innerHTML = `
         <div class="max-w-30 md:max-w-40">
           <img src="${order.image}" alt="product" />
         </div>
@@ -56,22 +56,22 @@ if (localStorage.getItem("loginUsers")) {
         <a
           href="#"
           id="delete"
-          class="block p-1 mt-5 text-sm font-light text-center transition-colors rounded w-fit bg-sky-700 hover:bg-sky-800 absolute right-4 bottom-4"
-          onclick="handleDelete(this)">
+          class="block p-1 mt-5 text-sm font-light text-center transition-colors rounded w-fit bg-sky-700 hover:bg-sky-800 absolute right-4 bottom-4">
           Delete from cart
-          </a>
-      </div>`;
-      cardContainer.innerHTML += content;
+          </a>`;
+      cardContainer.appendChild(card);
+      let deleteBtn = card.querySelector("#delete");
+      deleteBtn.addEventListener("click", () => handleDelete(card));
       calculateTotalPrice();
     });
   } else {
+    // if not found place a simple message to start add product
     content = `<p class="text-2xl font-light flex items-center justify-center h-full">Start adding Products</p>`;
     cardContainer.innerHTML = content;
   }
 }
 function handleDelete(card) {
-  const mainCard = card.parentElement;
-  const clickedCardTitle = mainCard.querySelector(".order-title").textContent;
+  const clickedCardTitle = card.querySelector(".order-title").textContent;
   const remainingOrders = orders.filter(
     (order) => order.title != clickedCardTitle
   );
@@ -82,7 +82,7 @@ function handleDelete(card) {
     loginUsers.find((user) => user.login == true) ?? false; // get the current logged in user
   currectLoginUser.orders = remainingOrders;
   updateCartCount(remainingOrders, currectLoginUser);
-  mainCard.remove(); // remove from UI
+  card.remove(); // remove from UI
   localStorage.setItem("loginUsers", JSON.stringify(loginUsers)); // remove from LS
 }
 
@@ -102,6 +102,7 @@ function updateCartCount(remainingOrders, currentUser) {
   }
 }
 function calculateTotalPrice() {
+  // we use reduce to first multiply each order count by price and then sum accumlator with the final value and the starting point or the initial value is 0
   const sumAllCount = orders.reduce(
     (acc, order) => acc + order.count * order.price,
     0

@@ -17,7 +17,7 @@ if (localStorage.getItem("loginUsers")) {
 }
 logoutBtn.addEventListener(
   "click",
-  () => (window.location.href = "/src/pages/logout.html") // handling logout in logout page
+  () => (window.location.href = "/logout.html") // handling logout in logout page
 );
 
 // ============ starting main or home scripts ============

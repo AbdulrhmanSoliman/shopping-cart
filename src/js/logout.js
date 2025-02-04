@@ -12,7 +12,4 @@ function logoutUser() {
 // edit login key in localstorage to false
 logoutBtn.addEventListener("click", logoutUser);
 // return to home page
-stayBtn.addEventListener(
-  "click",
-  () => (location.href = "/src/pages/home.html")
-);
+stayBtn.addEventListener("click", () => (location.href = "/home.html"));

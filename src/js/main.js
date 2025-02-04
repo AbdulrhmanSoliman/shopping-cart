@@ -16,7 +16,7 @@ if (localStorage.getItem("loginUsers")) {
   const currectLoginUser =
     paresedUsersData.find((user) => user.login == true) ?? false;
   if (currectLoginUser.login) {
-    window.location.href = "/src/pages/home.html";
+    window.location.href = "/home.html";
   }
 }
 
@@ -40,7 +40,7 @@ function checkUser(e) {
       }
       updateLocalStorage();
       showSuccessAlert();
-      window.location.href = "/src/pages/home.html";
+      window.location.href = "/home.html";
       return true; // returning true to check if user not found because find() returns undefined
     }
   });
